@@ -1,0 +1,11 @@
+prerequired_variables:  
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+    - python3-pip
+    - virtualenv
+    - python3-setuptools
+
+docker_package: docker-ce
+java_version: openjdk-11-jdk
