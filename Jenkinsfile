@@ -11,8 +11,9 @@ pipeline {
         DOCKER_IMAGE    = 'new-app-project'
         // BUILD_NUMBER    = '1'
         SERVER_NAME     = 'https://api.ocpuat.devopsconsulting.org:6443'
-        OPENSHIFT_TOKEN = 'sha256~2WTzYAScmhdm7sYQtPRuHx-4ZsuliaN2FGr4FDaNxq0'
         OPENSHIFT_PROJECT = 'abdelrahman'
+        SONARQUBE_PROJECTKEY = 'project' 
+        SONARQUBE_TOKEN = ''
     }
 
     stages {
@@ -54,7 +55,6 @@ pipeline {
             steps {
                 script {
                     deployToOpenShift(
-                        OPENSHIFT_TOKEN: env.OPENSHIFT_TOKEN,
                         SERVER_NAME: env.SERVER_NAME,
                         OPENSHIFT_PROJECT: env.OPENSHIFT_PROJECT,
                         KUBECONFIG: env.KUBECONFIG
