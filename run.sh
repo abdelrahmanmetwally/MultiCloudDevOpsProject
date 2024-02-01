@@ -4,3 +4,4 @@ terraform plan
 terraform apply --auto-approve
 
 cd ../../../ansible-roles
+ansible-playbook playbook.yml
