@@ -1,11 +1,12 @@
-@Library('your-shared-library') _
+@Library('my-jenkins-shared-library') _
+// its link is : https://github.com/abdelrahmanmetwally/my-jenkins-shared-library.git
 
 pipeline {
     agent any
 
     environment {
         USERNAME        = '$USERNAME'
-        PASSWORD        = 'PASSWORD'
+        PASSWORD        = '$PASSWORD'
         DOCKER_REGISTRY = 'abdo23'
         DOCKER_IMAGE    = 'new-app-project'
         // BUILD_NUMBER    = '1'
