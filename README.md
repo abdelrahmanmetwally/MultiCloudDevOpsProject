@@ -30,4 +30,4 @@
 
 ## jenkins triggered with github commit
 ![jenkins github triggered](https://github.com/abdelrahmanmetwally/MultiCloudDevOpsProject/blob/aafd9407d5109ee44148c7cdf7546195e72d71a9/documnetation-images/github-trigger.png)
-![jenkins github triggered ](https://github.com/abdelrahmanmetwally/MultiCloudDevOpsProject/blob/aafd9407d5109ee44148c7cdf7546195e72d71a9/documnetation-images/github trigger using webhook.png )
+![jenkins github triggered ](https://github.com/abdelrahmanmetwally/MultiCloudDevOpsProject/blob/aafd9407d5109ee44148c7cdf7546195e72d71a9/documnetation-images/github-trigger-webhook.png)
