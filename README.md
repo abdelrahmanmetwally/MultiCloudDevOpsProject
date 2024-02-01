@@ -20,7 +20,14 @@
     chmod +x run.sh
    ./run.sh
 ```
-
+## jenkins shared library
 ![jenkins shared library ](https://github.com/abdelrahmanmetwally/MultiCloudDevOpsProject/blob/aafd9407d5109ee44148c7cdf7546195e72d71a9/documnetation-images/jenkins-shared-lib1.png)
 ![jenkins shared library ](https://github.com/abdelrahmanmetwally/MultiCloudDevOpsProject/blob/aafd9407d5109ee44148c7cdf7546195e72d71a9/documnetation-images/jenkins-shared-lib2.png)
 ![jenkins shared library ](https://github.com/abdelrahmanmetwally/MultiCloudDevOpsProject/blob/aafd9407d5109ee44148c7cdf7546195e72d71a9/documnetation-images/jenkins-shared-lib3.png)
+
+## jenkins credentials 
+![jenkins credentials ](https://github.com/abdelrahmanmetwally/MultiCloudDevOpsProject/blob/aafd9407d5109ee44148c7cdf7546195e72d71a9/documnetation-images/credentials.png)
+
+## jenkins triggered with github commit
+![jenkins github triggered](https://github.com/abdelrahmanmetwally/MultiCloudDevOpsProject/blob/aafd9407d5109ee44148c7cdf7546195e72d71a9/documnetation-images/github-trigger.png)
+![jenkins github triggered ](https://github.com/abdelrahmanmetwally/MultiCloudDevOpsProject/blob/aafd9407d5109ee44148c7cdf7546195e72d71a9/documnetation-images/github trigger using webhook.png )
