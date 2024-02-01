@@ -3,11 +3,12 @@ pipeline {
     environment {
         
         DOCKER_REGISTRY = 'docker.io/abdo23'
-        DOCKER_IMAGE = 'new-app-project'
-        OPENSHIFT_TOKEN =  'https://api.ocpuat.devopsconsulting.org:6443'
-        SERVER_NAME = 'sha256~2WTzYAScmhdm7sYQtPRuHx-4ZsuliaN2FGr4FDaNxq0 '
+        DOCKER_IMAGE = 'new-app-project'  
+        SERVER_NAME =  'https://api.ocpuat.devopsconsulting.org:6443'
+        OPENSHIFT_TOKEN = 'sha256~2WTzYAScmhdm7sYQtPRuHx-4ZsuliaN2FGr4FDaNxq0 '
         OPENSHIFT_PROJECT = 'abdelrahman'
         SONARQUBE_TOKEN= '11986ba88cfe1b603256e331f33d03679486adc0'
+        SONARQUBE_PROJECTKEY= 'ivlove-project'
 
         
     }
@@ -37,8 +38,8 @@ pipeline {
                                 withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                                     sh ' echo hello'
                                     sh ' docker login -u ${USERNAME} -p ${PASSWORD} '
-                                    sh ' docker build -t abdo23/new-app-project:v${BUILD_NUMBER} . '
-                                    sh ' docker push abdo23/new-app-project:v${BUILD_NUMBER} '
+                                    sh ' docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:v${BUILD_NUMBER} . '
+                                    sh ' docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:v${BUILD_NUMBER} '
                                 }
                     
                 }
@@ -48,7 +49,7 @@ pipeline {
         stage('sonar-qube') {
             steps {
                  
-                 sh "./gradlew sonarqube -Dsonar.projectKey=ivolve-project -Dsonar.host.url=http://localhost:9000 -Dsonar.login=11986ba88cfe1b603256e331f33d03679486adc0"
+                 sh "./gradlew sonarqube -Dsonar.projectKey=${SONARQUBE_PROJECTKEY} -Dsonar.host.url=http://localhost:9000 -Dsonar.login=${SONARQUBE_TOKEN}"
                }   
         }
 
@@ -58,14 +59,14 @@ pipeline {
                 script {
                     sh ' echo hello'
                          
-                                // withCredentials([file(credentialsId: 'openshift-credentials', variable: 'KUBECONFIG')]) {
-                                //     sh '''
-                                //         oc login --token=${SERVER_NAME} --server=https://api.ocpuat.devopsconsulting.org:6443  --insecure-skip-tls-verify
-                                //         oc project abdelrahman
-                                //         oc apply -f DeployRoute.yml --kubeconfig ${KUBECONFIG} -n abdelrahman
+                                withCredentials([file(credentialsId: 'openshift-credentials', variable: 'KUBECONFIG')]) {
+                                    sh '''
+                                        oc login --token=${OPENSHIFT_TOKEN} --server=${SERVER_NAME} --insecure-skip-tls-verify
+                                        oc project ${OPENSHIFT_PROJECT}
+                                        oc apply -f DeployRoute.yml --kubeconfig ${KUBECONFIG} -n ${OPENSHIFT_PROJECT}
     
-                                //     '''
-                                // }
+                                    '''
+                                }
                          
                     }
                 }
