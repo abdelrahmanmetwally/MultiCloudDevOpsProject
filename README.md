@@ -13,6 +13,7 @@
  - monitoring the infrasturcture: used terraform to integrate cloud watch with the ec2 , find it in (terraform-modules-project/ec2/m.ain.tf).
 
 ## to run the deployment script: 
-``` chmod +x run.sh
+```
+    chmod +x run.sh
    ./run.sh
 ```
