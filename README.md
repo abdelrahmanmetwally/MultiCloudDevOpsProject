@@ -12,6 +12,7 @@
  - sonarqube: to check code quality.
  - monitoring and logging on opneshift: using red hat openshift logging and openshift elastic operators .
  - monitoring the infrasturcture: used terraform to integrate cloud watch with the ec2 , find it in (terraform-modules-project/ec2/m.ain.tf).
+ - aws: the cloud provider which we will create and manage the remote machine in.
 
 ## to run the deployment script: 
 ```
