@@ -107,46 +107,21 @@
     name: jenkins
     state: restarted
     enabled: yes
+## run  sonar-qube container
+- name: Pull SonarQube Docker Image
+  docker_image:
+      name: sonarqube:8.9.1-community
 
-## install sonar-qube
-- name: Add the SonarQube GPG key
-  apt_key:
-    url: https://binaries.sonarsource.com/CommercialDistribution/sonarqube-developer/sonarqube-developer-9.5.1.48370.key
-    state: present
-
-- name: Add the SonarQube APT repository
-  apt_repository:
-    repo: deb https://binaries.sonarsource.com/CommercialDistribution/sonarqube-developer/ any main
-    state: present
-
-- name: Install SonarQube
-  apt:
-    name: sonarqube-developer
-    state: present
-
-- name: Start SonarQube service
-  systemd:
-    name: sonarqube
-    state: started
-    enabled: yes
-
-- name: Wait for SonarQube to start
-  uri:
-    url: http://localhost:9000
-  register: sonarqube_status
-  until: sonarqube_status.status == 200
-  retries: 10
-  delay: 10
-
-
-
-
-
-
-
-
-
-
+- name: Create SonarQube Container
+  docker_container:
+        name: sonarqube
+        image: sonarqube:8.9.1-community
+        detach: yes
+        state: started
+        ports:
+          - "9000:9000"
+        env:
+          SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: "true"
 
     
 
