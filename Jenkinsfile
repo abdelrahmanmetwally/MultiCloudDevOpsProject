@@ -4,11 +4,11 @@ pipeline {
     agent any
 
     environment {
-        USERNAME        = 'your-docker-username'
-        PASSWORD        = 'your-docker-password'
+        USERNAME        = '$USERNAME'
+        PASSWORD        = 'PASSWORD'
         DOCKER_REGISTRY = 'abdo23'
         DOCKER_IMAGE    = 'new-app-project'
-        BUILD_NUMBER    = '1'
+        // BUILD_NUMBER    = '1'
         SERVER_NAME     = 'https://api.ocpuat.devopsconsulting.org:6443'
         OPENSHIFT_TOKEN = 'sha256~2WTzYAScmhdm7sYQtPRuHx-4ZsuliaN2FGr4FDaNxq0'
         OPENSHIFT_PROJECT = 'abdelrahman'
@@ -42,6 +42,12 @@ pipeline {
                 }
             }
         }
+        stage('sonar-qube') {
+            steps {
+                 
+                 sh "./gradlew sonarqube -Dsonar.projectKey=${SONARQUBE_PROJECTKEY} -Dsonar.host.url=http://localhost:9000 -Dsonar.login=${SONARQUBE_TOKEN}"
+               }   
+        }        
 
         stage('deployToOpenShift') {
             steps {
