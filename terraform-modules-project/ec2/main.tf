@@ -27,6 +27,7 @@ resource "aws_instance" "ec2"  {
 
 }
 
+## add cloud watch cpu utilization alarm for ec2
 resource "aws_cloudwatch_metric_alarm" "cpu_utilization_alarm" {
   alarm_name          = "EC2-CPU-Utilization-Alarm"
   comparison_operator = "GreaterThanOrEqualToThreshold"
