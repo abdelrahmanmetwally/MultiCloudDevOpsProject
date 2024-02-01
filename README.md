@@ -14,6 +14,7 @@
  - monitoring the infrasturcture: used terraform to integrate cloud watch with the ec2 , find it in (terraform-modules-project/ec2/m.ain.tf).
  - aws: the cloud provider which we will create and manage the remote machine in.
  -  github
+ -  openshift-cluster
 ## to run the deployment script: 
 ```
     chmod +x run.sh
