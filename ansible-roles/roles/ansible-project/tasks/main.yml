@@ -122,6 +122,17 @@
           - "9000:9000"
         env:
           SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: "true"
+    # add openshift cli to jenkins
+- name: Copy a single file
+      copy:
+        src: /home/abdo/Dowloads/oc
+        dest: /usr/local/bin
+
+- name: Restart Jenkins service
+  systemd:
+    name: jenkins
+    state: restarted
+    enabled: yes
 
     
 
