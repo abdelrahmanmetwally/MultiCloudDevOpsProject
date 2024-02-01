@@ -12,8 +12,9 @@ pipeline {
         // BUILD_NUMBER    = '1'
         SERVER_NAME     = 'https://api.ocpuat.devopsconsulting.org:6443'
         OPENSHIFT_PROJECT = 'abdelrahman'
-        SONARQUBE_PROJECTKEY = 'project' 
-        SONARQUBE_TOKEN = ''
+        SONARQUBE_PROJECTKEY = 'abdoMetwally' 
+        SONARQUBE_TOKEN = '
+        SONARQUBE_HOST_URL = 
     }
 
     stages {
