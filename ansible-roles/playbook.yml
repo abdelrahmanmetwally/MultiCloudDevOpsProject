@@ -1,0 +1,10 @@
+- name: play1
+  hosts: web_server
+  gather_facts: false
+  roles:
+    - ansible-project
+  # vars:
+  #   container_count: 2
+  #   default_container_name: docker
+  #   default_container_image: ubuntu
+  #   default_container_command: sleep 1d

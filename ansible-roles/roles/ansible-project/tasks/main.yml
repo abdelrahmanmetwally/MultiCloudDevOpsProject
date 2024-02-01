@@ -1,0 +1,153 @@
+- name: Update package lists
+  become: yes
+  apt:
+    update_cache: yes
+
+- name: Install aptitude
+  apt:
+    name: aptitude
+    state: latest
+    update_cache: true
+
+
+- name: Install required system packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: true
+  loop: "{{ prerequired_variables }}"
+
+
+
+- name: Add Docker GPG apt Key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker Repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu focal stable
+    state: present
+
+- name: Update apt and install docker-ce
+  apt:
+    name:  "{{ docker_package }}"   #docker-ce
+    state: latest
+    update_cache: true
+
+- name: Install Docker Module for Python
+  pip:
+    name: docker
+
+
+# install jenkins
+
+- name: Install Java
+  apt:
+    name: "{{ java_version }}"   #   openjdk-11-jdk
+    state: present
+
+- name: Add Jenkins APT repository key
+  apt_key:
+    url: https://pkg.jenkins.io/debian/jenkins.io.key
+    state: present
+
+
+
+- name: add jenkins apt repository
+  command: " sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'"
+
+- name: Upgrade all packages
+  apt:
+    upgrade: yes
+    autoremove: yes
+
+
+- name: Receive Jenkins GPG key
+  command: "gpg --keyserver keyserver.ubuntu.com --recv-keys 5BA31D57EF5975CA "
+
+- name: Export and add Jenkins GPG key
+  command: "gpg --export --armor 5BA31D57EF5975CA | sudo apt-key add -"
+     
+
+
+- name: Update 
+  
+  apt:
+    update_cache: yes
+
+- name: Install Jenkins
+  apt:
+    name: jenkins
+    state: present
+
+- name: Start Jenkins service
+  systemd:
+    name: jenkins
+    state: started
+    enabled: yes
+
+- name: Wait for Jenkins to start
+  wait_for:
+    port: 8080
+
+- name: Add jenkins to the docker group
+  user:
+    name: jenkins
+    groups: docker
+    append: yes
+
+- name: Set permissions on /var/run/docker.sock
+  file:
+    path: /var/run/docker.sock
+    mode: '0666'
+
+- name: Restart Jenkins service
+  systemd:
+    name: jenkins
+    state: restarted
+    enabled: yes
+
+## install sonar-qube
+- name: Add the SonarQube GPG key
+  apt_key:
+    url: https://binaries.sonarsource.com/CommercialDistribution/sonarqube-developer/sonarqube-developer-9.5.1.48370.key
+    state: present
+
+- name: Add the SonarQube APT repository
+  apt_repository:
+    repo: deb https://binaries.sonarsource.com/CommercialDistribution/sonarqube-developer/ any main
+    state: present
+
+- name: Install SonarQube
+  apt:
+    name: sonarqube-developer
+    state: present
+
+- name: Start SonarQube service
+  systemd:
+    name: sonarqube
+    state: started
+    enabled: yes
+
+- name: Wait for SonarQube to start
+  uri:
+    url: http://localhost:9000
+  register: sonarqube_status
+  until: sonarqube_status.status == 200
+  retries: 10
+  delay: 10
+
+
+
+
+
+
+
+
+
+
+
+    
+
+

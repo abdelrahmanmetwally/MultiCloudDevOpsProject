@@ -1,0 +1,5 @@
+- name: restarting
+  service: 
+     name: "{{ package_name }}"
+     state: restarted
+     #there should be handler
