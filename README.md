@@ -29,8 +29,7 @@
 ![jenkins credentials ](https://github.com/abdelrahmanmetwally/MultiCloudDevOpsProject/blob/aafd9407d5109ee44148c7cdf7546195e72d71a9/documnetation-images/credentials.png)
 
 ## jenkins triggered with github commit
-![jenkins github triggered](https://github.com/abdelrahmanmetwally/MultiCloudDevOpsProject/blob/aafd9407d5109ee44148c7cdf7546195e72d71a9/documnetation-images/
-github-trigge.png)
+![jenkins github webhook ](https://github.com/abdelrahmanmetwally/MultiCloudDevOpsProject/blob/dd4fa4528b4af40c1b4ac1f59ffb896dd696bfd6/documnetation-images/github.png)
 
 ![jenkins github triggered](https://github.com/abdelrahmanmetwally/MultiCloudDevOpsProject/blob/aafd9407d5109ee44148c7cdf7546195e72d71a9/documnetation-images/github-trigger.png)
 
