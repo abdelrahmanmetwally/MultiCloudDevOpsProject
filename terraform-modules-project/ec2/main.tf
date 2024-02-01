@@ -27,6 +27,23 @@ resource "aws_instance" "ec2"  {
 
 }
 
+resource "aws_cloudwatch_metric_alarm" "cpu_utilization_alarm" {
+  alarm_name          = "EC2-CPU-Utilization-Alarm"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "2"
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/EC2"
+  period              = "300"  # 5 minutes
+  statistic           = "Average"
+  threshold           = "80"
+
+  dimensions = {
+    InstanceId = aws_instance.ec2.id
+  }
+
+  alarm_description = "Alarm when CPU utilization is greater than or equal to 80% for 2 consecutive periods."
+}
+
 
 
 
