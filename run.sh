@@ -1,4 +1,4 @@
-cd terraform-modules-project/main-files/main.tf 
+cd terraform-modules-project/main-files
 terraform init
 terraform plan 
 terraform apply --auto-approve
