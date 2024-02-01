@@ -13,8 +13,8 @@ pipeline {
         SERVER_NAME     = 'https://api.ocpuat.devopsconsulting.org:6443'
         OPENSHIFT_PROJECT = 'abdelrahman'
         SONARQUBE_PROJECTKEY = 'abdoMetwally' 
-        SONARQUBE_TOKEN = '
-        SONARQUBE_HOST_URL = 
+        SONARQUBE_TOKEN = 'SONARQUBE_TOKEN'
+        SONARQUBE_HOST_URL = 'http://35.174.15.158:9000'
     }
 
     stages {
@@ -48,7 +48,7 @@ pipeline {
         stage('sonar-qube') {
             steps {
                  
-                 sh "./gradlew sonarqube -Dsonar.projectKey=${SONARQUBE_PROJECTKEY} -Dsonar.host.url=http://localhost:9000 -Dsonar.login=${SONARQUBE_TOKEN}"
+                 sh "./gradlew sonarqube -Dsonar.projectKey=${SONARQUBE_PROJECTKEY} -Dsonar.host.url=${SONARQUBE_HOST_URL} -Dsonar.login=${SONARQUBE_TOKEN}"
                }   
         }        
 
